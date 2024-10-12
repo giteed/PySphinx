@@ -1,3 +1,11 @@
+import sys
+import os
+import hashlib
+
+def hash_data(data):
+    """Функция для хеширования данных блока."""
+    return hashlib.sha256(data.encode()).hexdigest()
+
 def validate_block(filepath, previous_block_hash=None):
     """Функция для валидации блока с учетом предыдущего хеша."""
     
