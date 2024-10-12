@@ -3,3 +3,4 @@ env/
 blockchain/
 __pycache__/
 test_blockchain.py
+TEMP/
