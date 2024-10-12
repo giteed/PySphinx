@@ -2,7 +2,7 @@ import os
 import subprocess
 
 def display_menu():
-    print("=== Меню управления ChainMaster 9999 ===")
+    print("=== Меню управления PySphinx ===")
     print("1. Создать новый блок")
     print("2. Проверить целостность всех блоков")
     print("3. Валидация конкретного блока")
