@@ -10,14 +10,12 @@ def validate_block(filename):
             data_line = lines[0].strip().split(": ")[1]
             stored_hash = lines[1].strip().split(": ")[1]
             previous_hash = lines[2].strip().split(": ")[1] if len(lines) > 2 else None
-            
+
             # Вычисляем хеш данных
             computed_hash = hash_data(data_line)
-            
+
             return computed_hash == stored_hash
     return False
-
-from blockchain_replacement import archive_blockchain
 
 def create_block(block_number, data, previous_hash=None):
     """Функция для создания нового блока."""
@@ -41,3 +39,9 @@ def create_block(block_number, data, previous_hash=None):
             file.write(f"Хеш предыдущего блока: {previous_hash}\n")
     
     print(f"Блок {block_number} создан и сохранен в файл: {filename}")
+
+    # Если достигли блока 9999, запускаем архивирование
+    if block_number == 9999:
+        print("Достигнут лимит в 9999 блоков. Запускаем архивирование...")
+        from blockchain_replacement import archive_blockchain  # Локальный импорт
+        archive_blockchain()
