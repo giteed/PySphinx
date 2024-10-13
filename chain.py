@@ -5,23 +5,13 @@ def get_block_number(filename):
     """Функция для извлечения номера блока из имени файла."""
     return int(filename.split('_')[0])
 
-def get_last_valid_block():
-    """Функция для получения последнего валидного блока."""
-    files = [f for f in os.listdir('blockchain') if f.endswith('.txt')]
-    valid_blocks = []
-
-    for file in files:
-        if validate_block(os.path.join('blockchain', file)):
-            valid_blocks.append(file)
-
-    if valid_blocks:
-        valid_blocks.sort(key=get_block_number)
-        return valid_blocks[-1]  # Возвращаем последний валидный блок
-    return None
-
 def check_chain_integrity():
     """Функция для проверки целостности блокчейна."""
     files = sorted([f for f in os.listdir('blockchain') if f.endswith('.txt')], key=get_block_number)
+    
+    if not files:
+        print("Нет доступных блоков.")
+        return True
     
     previous_hash = None
     for i in range(len(files)):
